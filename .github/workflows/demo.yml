@@ -1,12 +1,11 @@
-# Here’s a minimal GitHub Actions workflow that prints "Hello World" when you push code to your repository.
-# .github/workflows/hello-world.yml
-Yamlname: Hello World Workflow
+name: Hello World Demo
 
-# Trigger workflow on push to any branch
+# Trigger workflow on every push to the main branch
 on:
   push:
     branches:
-      - "**"
+      - main
+  workflow_dispatch: # Allows manual trigger from GitHub UI
 
 jobs:
   say-hello:
@@ -18,28 +17,13 @@ jobs:
         uses: actions/checkout@v4
 
       # Step 2: Print Hello World
-      - name: Print message
-        run: echo "Hello World"
+      - name: Print greeting
+        run: echo "Hello, World!"
 
+      # Step 3: Show current date and time
+      - name: Show date and time
+        run: date
 
-# How it works:
-cr
-# Trigger: Runs whenever you push to any branch.
-# Runner: Uses GitHub’s ubuntu-latest virtual machine.
-# Steps:
-
-# Checkout: Gets your repository code (required for most workflows).
-# Run Command: Executes echo "Hello World" in the shell.
-
-
-
-
-# ✅ To use it:
-
-# Create the folder .github/workflows in your repo.
-# Save the above YAML as hello-world.yml inside it.
-# Commit and push — GitHub Actions will run and print "Hello World" in the logs.
-
-
-# If you want, I can also give you a Node.js or Python GitHub Action version that prints "Hello World" instead of just using echo.
-# Do you want me to prepare that?
+      # Step 4: List files in the repository
+      - name: List repository files
+        run: ls -la
